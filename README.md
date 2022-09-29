@@ -9,6 +9,7 @@ thought or a reaction to a thought from another user. Users can also add other u
 ## Installation
 
 npm install express
+
 npm install mongoose
 
 ## How to Start Server
