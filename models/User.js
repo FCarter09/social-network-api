@@ -5,13 +5,15 @@ const UserSchema = new Schema(
     {
     userName: {
         type: String,
+        unique: true,
         required: true,
         trim: true
     },
     userEmail: {
         type: String,
         required: true,
-        trim: true,
+        unique: true,
+        match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
     },
     // associate thoughts to user
     thoughts: [
@@ -38,9 +40,9 @@ const UserSchema = new Schema(
     }
 );
 
-// get total count of comments and replies on retrieval
+// get total count of thoughts and reactions on retrieval
 UserSchema.virtual('thoughtCount').get(function() {
-    return this.thoughts.reduce((total, thought) => total + thought.reactions.length + 1, 0);
+    return this.thoughts.length;
   });
 
 // get total count of friends of user
